@@ -29,7 +29,9 @@ public class UserController {
     @PostMapping("/login")
     User loginUser(@RequestBody Map<String,String> login){
         log.info("Request : {}",login);
-        return userRepository.findUserByEmailAndPassword(
+        User user=userRepository.findUserByEmailAndPassword(
                 login.get("email"),login.get("password"));
+        log.info("Response : {}",user);
+        return user;
     }
 }
