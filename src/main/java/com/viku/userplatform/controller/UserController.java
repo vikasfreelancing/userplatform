@@ -27,7 +27,10 @@ public class UserController {
     String health(){
         return "I am userplatform up and running";
     }
-
+    @GetMapping("/health2")
+    String health2(){
+        return "I am userplatform up and running2";
+    }
     @PostMapping("/login")
     User loginUser(@RequestBody Map<String,String> login){
         log.info("Request : {}",login);
