@@ -19,6 +19,7 @@ public class UserController {
     User registerUser(@RequestBody User user){
         log.info("Request : {}",user);
         User savedUser=userRepository.save(user);
+        log.info("Response: {}",savedUser);
         return savedUser;
     }
     @PostMapping("/health")
