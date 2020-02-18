@@ -4,6 +4,7 @@ import com.viku.userplatform.dto.User;
 import com.viku.userplatform.repository.UserRepository;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
@@ -22,9 +23,9 @@ public class UserController {
         log.info("Response : {}",savedUser);
         return savedUser;
     }
-    @PostMapping("/health")
+    @GetMapping("/health")
     String health(){
-        return "I will register in future";
+        return "I am userplatform up and running";
     }
 
     @PostMapping("/login")
