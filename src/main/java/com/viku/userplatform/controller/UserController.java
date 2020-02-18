@@ -19,7 +19,7 @@ public class UserController {
     User registerUser(@RequestBody User user){
         log.info("Request : {}",user);
         User savedUser=userRepository.save(user);
-        log.info("Response: {}",savedUser);
+        log.info("Response : {}",savedUser);
         return savedUser;
     }
     @PostMapping("/health")
@@ -30,7 +30,7 @@ public class UserController {
     @PostMapping("/login")
     User loginUser(@RequestBody Map<String,String> login){
         log.info("Request : {}",login);
-        User user=userRepository.findUserByEmailAndPassword(
+        User user =userRepository.findUserByEmailAndPassword(
                 login.get("email"),login.get("password"));
         log.info("Response : {}",user);
         return user;
