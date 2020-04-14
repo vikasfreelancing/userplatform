@@ -15,7 +15,7 @@ import javax.persistence.*;
 @Setter
 public class FoundItem {
     @Id
-    private Long id;
+    private String id;
     private String images;
     private String userId;
     private String type;

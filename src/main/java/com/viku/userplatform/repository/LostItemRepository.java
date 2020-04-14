@@ -7,8 +7,8 @@ import java.util.List;
 import java.util.Optional;
 
 @Repository
-public interface LostItemRepository extends MongoRepository<LostItem, Long> {
+public interface LostItemRepository extends MongoRepository<LostItem, String> {
     LostItem save(LostItem item);
     List<LostItem> findAll();
-    Optional<LostItem> findById(Long id);
+    Optional<LostItem> findById(String id);
 }

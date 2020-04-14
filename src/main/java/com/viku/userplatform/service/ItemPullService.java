@@ -23,11 +23,11 @@ public class ItemPullService {
     public List<FoundItem> getFoundItems() {
         return foundItemRepository.findAll();
     }
-    public  FoundItem getFoundItem(Long id){
+    public  FoundItem getFoundItem(String id){
         Optional<FoundItem> foundItem = foundItemRepository.findById(id);
         return  foundItem.get();
     }
-    public LostItem getLostItem(Long id){
+    public LostItem getLostItem(String id){
        return lostItemRepository.findById(id).get();
     }
 

@@ -6,8 +6,8 @@ import org.springframework.data.mongodb.repository.MongoRepository;
 import java.util.List;
 import java.util.Optional;
 
-public interface FoundItemRepository extends MongoRepository<FoundItem,Long> {
+public interface FoundItemRepository extends MongoRepository<FoundItem,String> {
     FoundItem save(FoundItem foundItem);
     List<FoundItem> findAll();
-    Optional<FoundItem> findById(Long id);
+    Optional<FoundItem> findById(String id);
 }
