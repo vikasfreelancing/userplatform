@@ -7,6 +7,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.Map;
+import java.util.Optional;
+
 @RestController
 @Slf4j
 @RequestMapping("/user")
@@ -17,17 +19,17 @@ public class UserController {
     @PostMapping("/register")
     User registerUser(@RequestBody User user){
         log.info("Request : {}",user);
+        Optional<User> checkIfExist = userRepository.findUserByEmail();
+        if(checkIfExist.isPresent()){
+            return null ;
+        }
         User savedUser=userRepository.save(user);
         log.info("Response : {}",savedUser);
         return savedUser;
     }
     @GetMapping("/health")
     String health(){
-        return "I am userplatform up and running";
-    }
-    @GetMapping("/health2")
-    String health2(){
-        return "I am userplatform up and running2";
+        return "I am userPlatform up and running";
     }
     @PostMapping("/login")
     User loginUser(@RequestBody Map<String,String> login){

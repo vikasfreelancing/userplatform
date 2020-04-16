@@ -20,5 +20,5 @@ public class LostItem {
     private String userId;
     private String type;
     private boolean isFound;
-    private Long foundId;
+    private String foundId;
 }
