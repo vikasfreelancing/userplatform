@@ -6,6 +6,7 @@ import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
+import javax.servlet.http.HttpServletResponse;
 import java.util.Map;
 import java.util.Optional;
 
@@ -17,10 +18,11 @@ public class UserController {
     @Autowired
     private UserRepository userRepository;
     @PostMapping("/register")
-    User registerUser(@RequestBody User user){
+    User registerUser(@RequestBody User user, HttpServletResponse response){
         log.info("Request : {}",user);
         Optional<User> checkIfExist = userRepository.findUserByEmail();
         if(checkIfExist.isPresent()){
+            response.setStatus(441);
             return null ;
         }
         User savedUser=userRepository.save(user);

@@ -30,10 +30,15 @@ public class ItemController {
     }
 
     @GetMapping("/lost/items")
-    public List<LostItem> getLostItems() {
+    public List<LostItem> getLostItems(@RequestParam(name = "user_id",required = false) String userId) {
         log.info("Request received for get Items");
-        List<LostItem> items = itemPullService.getLostItems();
+        List<LostItem> items = itemPullService.getLostItems(userId);
         log.info("Returning following items : {}", items);
+        items.forEach(item->{
+            if(item.getImages()!=null){
+                item.setImages(item.getImages().split(",")[0]);
+            }
+        });
         return items;
     }
     @PostMapping("/found/save")
@@ -45,11 +50,17 @@ public class ItemController {
     }
 
     @GetMapping("/found/items")
-    public List<FoundItem> getFoundItems() {
+    public List<FoundItem> getFoundItems(@RequestParam(name = "user_id",required = false) String userId) {
         log.info("Request received for get found Items");
-        List<FoundItem> items = itemPullService.getFoundItems();
+        List<FoundItem> items = itemPullService.getFoundItems(userId);
         log.info("Returning following found items : {}", items);
+        items.forEach(item->{
+            if(item.getImages()!=null){
+                item.setImages(item.getImages().split(",")[0]);
+            }
+        });
         return items;
     }
+
 
 }

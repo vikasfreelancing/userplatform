@@ -5,6 +5,8 @@ import lombok.Builder;
 import lombok.Getter;
 import lombok.Setter;
 import lombok.ToString;
+import org.springframework.data.mongodb.core.mapping.Document;
+
 import javax.persistence.Id;
 
 @Builder
@@ -12,6 +14,7 @@ import javax.persistence.Id;
 @ToString
 @Getter
 @Setter
+@Document
 public class User {
     @Id
     private String id;

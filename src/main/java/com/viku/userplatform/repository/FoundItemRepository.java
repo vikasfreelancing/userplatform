@@ -10,4 +10,5 @@ public interface FoundItemRepository extends MongoRepository<FoundItem,String> {
     FoundItem save(FoundItem foundItem);
     List<FoundItem> findAll();
     Optional<FoundItem> findById(String id);
+    List<FoundItem> findByUserId(String userId);
 }

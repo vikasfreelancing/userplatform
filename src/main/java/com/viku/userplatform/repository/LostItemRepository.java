@@ -11,4 +11,5 @@ public interface LostItemRepository extends MongoRepository<LostItem, String> {
     LostItem save(LostItem item);
     List<LostItem> findAll();
     Optional<LostItem> findById(String id);
+    List<LostItem> findByUserId(String userId);
 }

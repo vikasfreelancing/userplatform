@@ -17,11 +17,15 @@ public class ItemPullService {
     @Autowired
     private FoundItemRepository foundItemRepository;
 
-    public List<LostItem> getLostItems() {
+    public List<LostItem> getLostItems(String userId) {
+        if(userId == null)
         return lostItemRepository.findAll();
+        else return lostItemRepository.findByUserId(userId);
     }
-    public List<FoundItem> getFoundItems() {
+    public List<FoundItem> getFoundItems(String userId) {
+        if (userId == null)
         return foundItemRepository.findAll();
+        else return foundItemRepository.findByUserId(userId);
     }
     public  FoundItem getFoundItem(String id){
         Optional<FoundItem> foundItem = foundItemRepository.findById(id);
