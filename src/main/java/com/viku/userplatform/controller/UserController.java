@@ -20,7 +20,7 @@ public class UserController {
     @PostMapping("/register")
     User registerUser(@RequestBody User user, HttpServletResponse response){
         log.info("Request : {}",user);
-        Optional<User> checkIfExist = userRepository.findUserByEmail();
+        Optional<User> checkIfExist = userRepository.findUserByEmail(user.getEmail());
         if(checkIfExist.isPresent()){
             response.setStatus(441);
             return null ;
