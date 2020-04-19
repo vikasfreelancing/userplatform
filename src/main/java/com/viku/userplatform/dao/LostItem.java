@@ -28,9 +28,9 @@ public class LostItem {
     private boolean isFound;
     private String foundId;
     @CreatedDate
-    @JsonFormat(pattern="yyyy-MM-dd HH:mm:ss")
+    @JsonFormat(pattern="EEEE dd-MM-yyyy HH:mm:ss")
     private Date createdAt;
-    @JsonFormat(pattern="yyyy-MM-dd HH:mm:ss")
+    @JsonFormat(pattern="EEEE dd-MM-yyyy HH:mm:ss")
     @LastModifiedDate
     private Date modifiedAt;
 }

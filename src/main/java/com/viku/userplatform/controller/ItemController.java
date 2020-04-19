@@ -2,6 +2,7 @@ package com.viku.userplatform.controller;
 
 import com.viku.userplatform.dao.FoundItem;
 import com.viku.userplatform.dao.LostItem;
+import com.viku.userplatform.dto.LostItemDetails;
 import com.viku.userplatform.service.ItemPullService;
 import com.viku.userplatform.service.ItemPushService;
 import lombok.extern.slf4j.Slf4j;
@@ -62,5 +63,11 @@ public class ItemController {
         return items;
     }
 
+    @GetMapping("/lost/item/details")
+    public LostItemDetails getLostItemDetails(@RequestParam(name="item_id") String itemId){
+        LostItemDetails lostItemDetails = itemPullService.getLostItemDetails(itemId);
+        log.info("Lost Item Details : {}",lostItemDetails);
+        return lostItemDetails;
+    }
 
 }

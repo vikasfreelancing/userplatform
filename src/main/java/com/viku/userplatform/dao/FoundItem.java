@@ -26,9 +26,9 @@ public class FoundItem {
     private String userId;
     private String type;
     @CreatedDate
-    @JsonFormat(pattern="yyyy-MM-dd HH:mm:ss")
+    @JsonFormat(pattern="EEEE dd-MM-yy HH:mm:ss")
     private Date createdAt;
-    @JsonFormat(pattern="yyyy-MM-dd HH:mm:ss")
+    @JsonFormat(pattern="EEEE dd-MM-yy HH:mm:ss")
     @LastModifiedDate
     private Date modifiedAt;
 }
