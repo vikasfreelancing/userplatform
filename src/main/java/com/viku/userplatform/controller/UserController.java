@@ -7,6 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
 import javax.servlet.http.HttpServletResponse;
+import java.util.List;
 import java.util.Map;
 import java.util.Optional;
 
@@ -40,5 +41,11 @@ public class UserController {
                 login.get("email"),login.get("password"));
         log.info("Response : {}",user);
         return user;
+    }
+    @GetMapping("/all")
+    List<User> getAllUsers(){
+        List<User> users = userRepository.findAll();
+        log.info("Response : {}",users);
+        return users;
     }
 }
