@@ -1,12 +1,15 @@
 package com.viku.userplatform.controller;
 
+import com.viku.userplatform.dto.ChatMapping;
 import com.viku.userplatform.dto.User;
+import com.viku.userplatform.repository.ChatMappingRepository;
 import com.viku.userplatform.repository.UserRepository;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
 import javax.servlet.http.HttpServletResponse;
+import java.util.Arrays;
 import java.util.List;
 import java.util.Map;
 import java.util.Optional;
@@ -17,9 +20,11 @@ import java.util.Optional;
 public class UserController {
 
     @Autowired
+    private ChatMappingRepository chatMappingRepository;
+    @Autowired
     private UserRepository userRepository;
     @PostMapping("/register")
-    User registerUser(@RequestBody User user, HttpServletResponse response){
+    public User registerUser(@RequestBody User user, HttpServletResponse response){
         log.info("Request : {}",user);
         Optional<User> checkIfExist = userRepository.findUserByEmail(user.getEmail());
         if(checkIfExist.isPresent()){
@@ -31,11 +36,11 @@ public class UserController {
         return savedUser;
     }
     @GetMapping("/health")
-    String health(){
+    public String health(){
         return "I am userPlatform up and running";
     }
     @PostMapping("/login")
-    User loginUser(@RequestBody Map<String,String> login){
+    public User loginUser(@RequestBody Map<String,String> login){
         log.info("Request : {}",login);
         User user =userRepository.findUserByEmailAndPassword(
                 login.get("email"),login.get("password"));
@@ -43,9 +48,22 @@ public class UserController {
         return user;
     }
     @GetMapping("/all")
-    List<User> getAllUsers(){
+    public List<User> getAllUsers(@RequestParam(name="email") String email){
         List<User> users = userRepository.findAll();
-        log.info("Response : {}",users);
+        users.forEach((user -> {
+         List<String> emails = Arrays.asList(user.getEmail(),email);
+         log.info("Emails are : {}",emails);
+         ChatMapping chatMapping = chatMappingRepository.findByFirstEmailInAndSecondEmailIn(
+                 emails,emails);
+         if(chatMapping == null ) user.setChatId(null);
+         else user.setChatId(chatMapping.getId());
+        }));
         return users;
+    }
+
+    @PostMapping("/createChatMapping")
+    public ChatMapping createMapping(@RequestBody ChatMapping chatMapping){
+        ChatMapping saved = chatMappingRepository.save(chatMapping);
+        return saved;
     }
 }

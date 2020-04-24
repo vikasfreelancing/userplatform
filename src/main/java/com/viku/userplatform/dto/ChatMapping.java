@@ -15,13 +15,9 @@ import javax.persistence.Id;
 @Getter
 @Setter
 @Document
-public class User {
+public class ChatMapping {
     @Id
     private String id;
-    private String name;
-    private String email;
-    private String password;
-    private String phone;
-    private String aadhar;
-    private String chatId;
+    private String firstEmail;
+    private String secondEmail;
 }
