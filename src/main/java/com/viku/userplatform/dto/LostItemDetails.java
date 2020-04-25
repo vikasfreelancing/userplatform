@@ -18,4 +18,5 @@ public class LostItemDetails {
     LostItem lostItem;
     FoundItem foundItem;
     User user;
+    User foundUser;
 }

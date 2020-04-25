@@ -47,7 +47,8 @@ public class ItemPullService {
         if (! user.isPresent()) return null;
         if(lostItem.get().isFound()){
           Optional<FoundItem> foundItem = foundItemRepository.findById(lostItem.get().getFoundId());
-          return LostItemDetails.builder().lostItem(lostItem.get()).user(user.get()).foundItem(foundItem.get()).build();
+          Optional<User> foundUser = userRepository.findById(foundItem.get().getUserId());
+          return LostItemDetails.builder().lostItem(lostItem.get()).user(user.get()).foundItem(foundItem.get()).foundUser(foundUser.get()).build();
         }
         else{
             return LostItemDetails.builder().lostItem(lostItem.get()).user(user.get()).foundItem(null).build();
