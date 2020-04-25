@@ -24,4 +24,5 @@ public class User {
     private String phone;
     private String aadhar;
     private String chatId;
+    private String profileImage;
 }

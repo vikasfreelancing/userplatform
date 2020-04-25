@@ -66,4 +66,16 @@ public class UserController {
         ChatMapping saved = chatMappingRepository.save(chatMapping);
         return saved;
     }
+
+    @PostMapping("/saveProfileImage")
+    public User saveProfileImage(@RequestBody Map<String,String> request){
+        log.info("save profile image request request:{}",request);
+        String email = request.get("email");
+        String profileImage = request.get("profileImage");
+        User user = userRepository.findUserByEmail(email).get();
+        user.setProfileImage(profileImage);
+        User savedUser = userRepository.save(user);
+        log.info("Response user : {}",savedUser);
+        return savedUser;
+    }
 }
