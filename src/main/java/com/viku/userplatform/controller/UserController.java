@@ -63,6 +63,13 @@ public class UserController {
 
     @PostMapping("/createChatMapping")
     public ChatMapping createMapping(@RequestBody ChatMapping chatMapping){
+        if(chatMapping.getFirstEmail().equalsIgnoreCase(chatMapping.getSecondEmail())){
+            return null;
+        }
+        List<String> list = Arrays.asList(chatMapping.getFirstEmail(),chatMapping.getSecondEmail());
+        ChatMapping mapping = chatMappingRepository.findByFirstEmailInAndSecondEmailIn(list,list);
+        if(mapping!=null)
+            return mapping;
         ChatMapping saved = chatMappingRepository.save(chatMapping);
         return saved;
     }
