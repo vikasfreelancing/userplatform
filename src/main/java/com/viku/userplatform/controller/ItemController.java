@@ -15,6 +15,7 @@ import java.util.List;
 @Slf4j
 @RestController
 @RequestMapping("/items")
+@CrossOrigin(maxAge = 3600)
 public class ItemController {
 
     @Autowired

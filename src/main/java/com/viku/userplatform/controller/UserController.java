@@ -17,6 +17,7 @@ import java.util.Optional;
 @RestController
 @Slf4j
 @RequestMapping("/user")
+@CrossOrigin(maxAge = 3600)
 public class UserController {
 
     @Autowired
